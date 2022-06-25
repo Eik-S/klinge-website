@@ -1,3 +1,5 @@
 export function Home() {
-  return <div>Home Inhalt</div>
+  return <div>Home page</div>
 }
+
+const styles = {}
