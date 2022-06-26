@@ -1,6 +1,6 @@
 import { css } from '@emotion/react'
-import { useEffect, useState } from 'react'
 import { colors } from '../assets/colors'
+import { formatStringToPrettyDate } from '../utils/date-formatter'
 import { Direction, Headline } from './headline'
 
 export interface ImageProps {
@@ -18,19 +18,14 @@ export interface PostProps {
   date: string
 }
 export function Post({ headlineText, headlineImage, content, date, direction }: PostProps) {
-  const [formattedDate, setFormattedDate] = useState<string | undefined>(undefined)
-
-  useEffect(() => {
-    const jsDate = new Date(date)
-    const options: any = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
-    const stringDate = jsDate.toLocaleDateString('de-DE', options)
-    setFormattedDate(stringDate)
-  }, [date])
+  const formattedDate = formatStringToPrettyDate(date)
 
   return (
     <div css={styles.postGridContainer}>
       <Headline text={headlineText} direction={direction} image={headlineImage}></Headline>
-      <p css={css([styles.paragraph(2), styles.date])}>{formattedDate}</p>
+      {formattedDate !== 'Invalid Date' && (
+        <p css={css([styles.paragraph(2), styles.date])}>{formattedDate}</p>
+      )}
       {content.map((element, index) => {
         if (typeof element === 'string') {
           return (

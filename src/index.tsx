@@ -32,10 +32,16 @@ const globalStyles = css`
   }
 
   * {
-    color: ${colors.font};
     font-family: roboto, sans-serif;
   }
 
+  p,
+  h1,
+  h2,
+  h3,
+  a {
+    color: ${colors.font};
+  }
   body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',

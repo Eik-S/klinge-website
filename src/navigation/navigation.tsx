@@ -56,6 +56,7 @@ const styles = {
   `,
   logo: css`
     font-weight: bold;
+    color: ${colors.font};
     display: grid;
     grid-template-columns: 1fr auto;
     grid-template-rows: auto auto;
