@@ -9,6 +9,7 @@ export const blogposts: BlogPostProps[] = [
       src: '/images/karlhelgableibt_rund.png',
       alt: 'unser logo.',
     },
+    date: '2022-06-26',
     content: [
       `kArL HeLgA eV. WAGEnpLAtZ
 

@@ -12,6 +12,7 @@ export function Home() {
           headlineImage={blogpost.headlineImage}
           direction={index % 2 === 0 ? 'left' : 'right'}
           key={index}
+          date={blogpost.date}
         />
       ))}
     </React.Fragment>

@@ -39,23 +39,30 @@ export function Headline({ text, direction, image }: HeadlineProps) {
 
 const styles = {
   logo: (direction: Direction) => css`
+    margin: 0 32px;
+    grid-row: 1;
     ${direction === 'left' &&
     css`
       grid-column: 1;
-      grid-row: 1;
       justify-self: left;
-      margin-left: 32px;
     `}
     ${direction === 'right' &&
     css`
       grid-column: 3;
-      grid-row: 1;
       justify-self: right;
-      margin-right: 32px;
     `}
     position: absolute;
     max-height: 200px;
     top: -20px;
+
+    @media screen and (max-width: 664px) {
+      max-height: 120px;
+      margin: 0 8px;
+    }
+
+    @media screen and (max-width: 400px) {
+      display: none;
+    }
   `,
   backgroundContainer: (direction: Direction) => css`
     background-color: ${colors.green};
@@ -79,6 +86,11 @@ const styles = {
     padding: 0 64px;
     letter-spacing: 0.04em;
     line-height: 48px;
+    @media screen and (max-width: 664px) {
+      padding: 0 32px;
+      line-height: 32px;
+      font-size: 24px;
+    }
 
     ${direction === 'left' &&
     css`

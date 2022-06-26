@@ -1,7 +1,8 @@
 import { css } from '@emotion/react'
 import React from 'react'
-import { NavLink } from 'react-router-dom'
-import { colors } from './assets/colors'
+import { colors } from '../assets/colors'
+import { BurgerMenu } from './burger-menu'
+import { NavigationLinks } from './navigation-links'
 
 export function Navigation() {
   return (
@@ -9,12 +10,8 @@ export function Navigation() {
       <div css={styles.navbarGap} />
       <div css={styles.navbar}>
         <Logo />
-        <nav css={styles.navigation}>
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="calendar">Kalender</NavLink>
-          <NavLink to="support">Support</NavLink>
-          <NavLink to="press">Presse</NavLink>
-        </nav>
+        <NavigationLinks css={styles.desktopOnly} />
+        <BurgerMenu css={styles.mobileOnly} />
       </div>
     </React.Fragment>
   )
@@ -31,8 +28,22 @@ function Logo() {
 }
 
 const styles = {
+  desktopOnly: css`
+    @media screen and (max-width: 890px) {
+      display: none;
+    }
+  `,
+  mobileOnly: css`
+    @media screen and (min-width: 891px) {
+      display: none;
+    }
+  `,
   navbarGap: css`
     height: 64px;
+    background-color: ${colors.almostBlack};
+    @media screen and (max-width: 890px) {
+      height: 0;
+    }
   `,
   navbar: css`
     position: sticky;
@@ -53,6 +64,9 @@ const styles = {
       'karl helga';
     grid-column-gap: 8px;
     padding: 8px;
+    @media screen and (max-width: 890px) {
+      grid-column-gap: 0;
+    }
   `,
   wagenplatz: css`
     grid-area: wagenplatz;
@@ -60,34 +74,24 @@ const styles = {
     line-height: 18px;
     align-self: flex-end;
     margin-bottom: -6px;
+
+    @media screen and (max-width: 890px) {
+      font-size: 12px;
+    }
   `,
   karl: css`
     grid-area: karl;
     font-size: 52px;
+    @media screen and (max-width: 890px) {
+      font-size: 35px;
+    }
   `,
   helga: css`
     grid-area: helga;
     font-size: 84px;
     align-self: center;
-  `,
-  navigation: css`
-    margin-left: auto;
-    margin-right: 32px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    column-gap: 32px;
-    align-items: center;
-
-    a {
-      font-size: 28px;
-      font-weight: bold;
-      text-decoration: none;
-      border-bottom: 4px solid transparent;
-      text-transform: lowercase;
-      &.active {
-        border-bottom: 4px solid ${colors.font};
-      }
+    @media screen and (max-width: 890px) {
+      font-size: 55px;
     }
   `,
 }

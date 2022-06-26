@@ -1,8 +1,7 @@
 import { css } from '@emotion/react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import './App.css'
 import { colors } from './assets/colors'
-import { Navigation } from './navigation'
+import { Navigation } from './navigation/navigation'
 import { Calendar } from './pages/calendar'
 import { Home } from './pages/home'
 import { Press } from './pages/press'
@@ -10,10 +9,10 @@ import { Support } from './pages/support'
 
 function App() {
   return (
-    <div css={styles.websiteContent}>
-      <div css={styles.headerImageContainer} />
-      <BrowserRouter>
-        <Navigation />
+    <BrowserRouter>
+      <Navigation />
+      <div css={styles.websiteContent}>
+        <div css={styles.headerImageContainer} />
         <div css={styles.contentBackground}>
           <div css={styles.content}>
             <Routes>
@@ -24,31 +23,30 @@ function App() {
             </Routes>
           </div>
         </div>
-      </BrowserRouter>
-    </div>
+      </div>
+    </BrowserRouter>
   )
 }
 
 const styles = {
   websiteContent: css`
-    height: 100vh;
     max-width: 100vw;
     position: relative;
   `,
   headerImageContainer: css`
-    width: 100vw;
-    height: 60vh;
-    position: fixed;
-    z-index: -1;
+    height: 50vh;
+    min-height: 300px;
+    margin-top: -200px;
     background-image: url('/images/header.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    @media screen and (max-width: 890px) {
+      margin-top: -100px;
+    }
   `,
   contentBackground: css`
-    margin-top: 40vh;
     background-color: ${colors.almostBlack};
-    min-height: 100vh;
     position: flex;
     flex-direction: column;
   `,

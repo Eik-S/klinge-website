@@ -6,6 +6,7 @@ Blogposts are added to [blogposts.ts](./src/content/blogposts.ts) by such an obj
 
 ```javascript
 {
+  date: '2022-06-26' // format 'YYYY-MM-DD' 
   headlineText: '<your headline text>',
   headlineImage: { //optional
     src: '/images/<your image filename>', 
