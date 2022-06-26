@@ -1,8 +1,8 @@
-import { PostProps } from '../components/post'
+import { BlogPostProps } from '../components/post'
 
-type BlogPostProps = Omit<PostProps, 'direction'>
+type BlogPostDataProps = Omit<BlogPostProps, 'direction'>
 
-export const blogposts: BlogPostProps[] = [
+export const blogposts: BlogPostDataProps[] = [
   {
     headlineText: 'Ein grünes Dorf in der Stadt…',
     headlineImage: {

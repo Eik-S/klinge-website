@@ -5,13 +5,13 @@ import { ImageProps } from './post'
 
 export type Direction = 'left' | 'right'
 interface HeadlineProps {
-  text: string
+  text: string | string[]
   image?: ImageProps
   direction: Direction
 }
 
 export function Headline({ text, direction, image }: HeadlineProps) {
-  const lines = splitInHalf(text)
+  const lines = typeof text === 'string' ? splitInHalf(text) : text
 
   function splitInHalf(text: string) {
     const words = text.split(' ')

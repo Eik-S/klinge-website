@@ -1,37 +1,76 @@
 import { css } from '@emotion/react'
 import { colors } from '../assets/colors'
-import { formatStringToPrettyDate } from '../utils/date-formatter'
+import { formatStringToPrettyDate, formatStringToPrettyTime } from '../utils/date-formatter'
 import { Direction, Headline } from './headline'
+
+export interface EventPostProps {
+  time: string
+  name: string
+  direction: Direction
+  text?: string
+  image?: ImageProps
+}
+
+export function EventPost({ time, name, direction, text, image }: EventPostProps) {
+  const postContent = createContentFromEvent(image, text)
+  const postHeadlineLines = [formatStringToPrettyTime(time), name]
+
+  function createContentFromEvent(
+    image: ImageProps | undefined,
+    text: string | undefined,
+  ): ContentElement[] {
+    const contentElement = []
+    if (image) {
+      contentElement.push(image)
+    }
+    if (text) {
+      contentElement.push(text)
+    }
+    return contentElement
+  }
+
+  return (
+    <GenericPost content={postContent} direction={direction} headlineText={postHeadlineLines} />
+  )
+}
+export interface BlogPostProps extends GenericPostProps {
+  date: string
+}
+
+export function BlogPost(blogPostProps: BlogPostProps) {
+  const formattedDate = formatStringToPrettyDate(blogPostProps.date)
+  return <GenericPost {...blogPostProps} date={formattedDate} />
+}
 
 export interface ImageProps {
   src: string
   alt: string
 }
-
 export type ContentElement = string | ImageProps
-
-export interface PostProps {
-  headlineText: string
+export interface GenericPostProps {
+  headlineText: string | string[]
   headlineImage?: ImageProps
   content: ContentElement[]
   direction: Direction
-  date: string
+  date?: string
 }
-export function Post({ headlineText, headlineImage, content, date, direction }: PostProps) {
-  const formattedDate = formatStringToPrettyDate(date)
+
+function GenericPost({ headlineText, headlineImage, content, date, direction }: GenericPostProps) {
+  function formatAsHtml(paragraph: string): string {
+    const htmlContent = paragraph.replaceAll('\n', '<br />')
+    return htmlContent
+  }
 
   return (
     <div css={styles.postGridContainer}>
       <Headline text={headlineText} direction={direction} image={headlineImage}></Headline>
-      {formattedDate !== 'Invalid Date' && (
-        <p css={css([styles.paragraph(2), styles.date])}>{formattedDate}</p>
-      )}
+      {date && <p css={css([styles.paragraph(2), styles.date])}>{date}</p>}
       {content.map((element, index) => {
         if (typeof element === 'string') {
           return (
             <p
               css={styles.paragraph(index + 3)}
-              dangerouslySetInnerHTML={{ __html: element }}
+              dangerouslySetInnerHTML={{ __html: formatAsHtml(element) }}
               key={index}
             />
           )

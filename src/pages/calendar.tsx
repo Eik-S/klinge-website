@@ -1,7 +1,7 @@
 import { css } from '@emotion/react'
 import React, { useEffect, useState } from 'react'
 import { CalendarView } from '../calendar/calendar-view'
-import { ContentElement, Post } from '../components/post'
+import { EventPost } from '../components/post'
 import { CalendarEvent } from '../content/events'
 import { formatDateToPrettyDate } from '../utils/date-formatter'
 import { getEventsForDate } from '../utils/event-picker'
@@ -26,12 +26,13 @@ export function Calendar() {
       />
       <h1 css={styles.headline}>Events am {formatDateToPrettyDate(activeDay)}</h1>
       {shownEvents.map((event, index) => (
-        <Post
-          headlineText={`${event.time} - ${event.name}`}
-          content={createContentFromEvent(event)}
+        <EventPost
+          name={event.name}
+          time={event.time}
+          image={event.image}
+          text={event.text}
           direction={index % 2 === 0 ? 'right' : 'left'}
           key={index}
-          date=""
         />
       ))}
     </React.Fragment>
@@ -43,15 +44,4 @@ const styles = {
     text-align: center;
     padding: 0 32px;
   `,
-}
-
-function createContentFromEvent(event: CalendarEvent): ContentElement[] {
-  const contentElement = []
-  if (event.image) {
-    contentElement.push(event.image)
-  }
-  if (event.text) {
-    contentElement.push(event.text)
-  }
-  return contentElement
 }

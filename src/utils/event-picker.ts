@@ -2,7 +2,6 @@ import { CalendarEvent } from '../content/events'
 import { calendarEvents } from '../content/events'
 
 export function getEventsForDate(date: Date): CalendarEvent[] {
-  console.log('iterating events')
   const events: CalendarEvent[] = []
   calendarEvents.forEach((event) => {
     const eventDate = new Date(event.date)

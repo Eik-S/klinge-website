@@ -15,8 +15,10 @@ export function CalendarView({ activeDay, onActiveDayChanges }: CalendarViewProp
 
     return (
       <div>
-        {events.map((event) => (
-          <span css={styles.tileEvent}>{event.shortName}</span>
+        {events.map((event, index) => (
+          <span css={styles.tileEvent} key={index}>
+            {event.shortName}
+          </span>
         ))}
       </div>
     )
