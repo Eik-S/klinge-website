@@ -8,6 +8,7 @@ export interface CalendarEvent {
   text?: string
   image?: ImageProps
   repeat?: 'weekly'
+  cancellations?: string[]
 }
 
 export const calendarEvents: CalendarEvent[] = [
@@ -15,15 +16,16 @@ export const calendarEvents: CalendarEvent[] = [
     date: '2022-06-26',
     time: '18:00',
     repeat: 'weekly',
+    cancellations: ['2022-07-17'],
     name: 'Küche für alle',
     shortName: 'Küfa',
-    text: `Jeden Sonntag gibts bei Essen auf Spendenbasis. 
+    text: `Jeden Sonntag gibts bei uns Essen auf Spendenbasis. 
     
     Pünktlich sein lohnt sich.`,
   },
   {
     date: '2022-06-26',
-    time: '22:00',
+    time: '22:30',
     name: 'Konzert - Christian Steiffen',
     shortName: 'Konzi',
     text: 'Der Gott des Schlager Live bei uns!',

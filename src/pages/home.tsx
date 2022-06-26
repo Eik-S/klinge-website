@@ -1,5 +1,5 @@
 import React from 'react'
-import { BlogPost, ContentElement } from '../components/post'
+import { BlogPost } from '../components/post'
 import { blogposts } from '../content/blogposts'
 
 export function Home() {

@@ -9,7 +9,9 @@ export function getEventsForDate(date: Date): CalendarEvent[] {
       events.push(event)
     } else if (event.repeat === 'weekly') {
       if (eventOccuredBeforeDate(eventDate, date) && sameDay(eventDate, date)) {
-        events.push(event)
+        if (event.cancellations === undefined || !dateIsCancelled(date, event.cancellations)) {
+          events.push(event)
+        }
       }
     }
   })
@@ -17,7 +19,13 @@ export function getEventsForDate(date: Date): CalendarEvent[] {
   return events
 }
 
-function eventOccuredBeforeDate(eventDate: Date, date: Date) {
+function dateIsCancelled(date: Date, cancellations: string[]): boolean {
+  return cancellations
+    .map((cancellation) => new Date(cancellation))
+    .some((cancellationDate) => sameDatum(cancellationDate, date))
+}
+
+function eventOccuredBeforeDate(eventDate: Date, date: Date): boolean {
   const before = eventDate.getTime() <= date.getTime()
   return before
 }
