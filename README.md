@@ -24,4 +24,4 @@ content must be a list of either `string` or `Image` e.g.:
 }]
 ```
 
-would be a valid blog post.
+would be a valid blog post content.
