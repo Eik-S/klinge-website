@@ -28,7 +28,7 @@ export const calendarEvents: CalendarEvent[] = [
     time: '22:30',
     name: 'Konzert - Christian Steiffen',
     shortName: 'Konzi',
-    text: 'Der Gott des Schlager Live bei uns!',
+    text: 'Der Gott des Schlager Live bei uns aufm Platz!',
     image: {
       alt: 'Der Gott des Schlager.',
       src: '/images/christian-steiffen.jpg',
