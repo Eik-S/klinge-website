@@ -34,4 +34,14 @@ export const calendarEvents: CalendarEvent[] = [
       src: '/images/christian-steiffen.jpg',
     },
   },
+  {
+    date: '2022-06-26',
+    name: 'Konzert - Christian Steiffen',
+    shortName: 'Konzi',
+    text: 'Der Gott des Schlager Live bei uns aufm Platz!',
+    image: {
+      alt: 'Der Gott des Schlager.',
+      src: '/images/christian-steiffen.jpg',
+    },
+  },
 ]
