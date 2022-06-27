@@ -58,7 +58,6 @@ const globalStyles = css`
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <Global styles={globalStyles}></Global>
     <App />
   </React.StrictMode>,
